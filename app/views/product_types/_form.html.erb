@@ -1,0 +1,39 @@
+    <!-- form - start -->
+    <form class="mx-auto grid gap-4 sm:grid-cols-2">
+
+    <div class="inline-flex items-center">
+        <label class="relative flex items-center p-3 rounded-full cursor-pointer" for="product_type_active" data-ripple-dark="true">
+
+        <%= form.check_box :active, class: "before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-teal-500 checked:bg-teal-500 checked:before:bg-teal-500 hover:before:opacity-10" %>
+        <div class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"
+                ></path>
+            </svg>
+        </div>
+
+        </label>
+        <%= form.label :active, class: "mt-px font-light text-gray-700 cursor-pointer select-none" %>
+    </div>
+
+      <div class="sm:col-span-2">
+        <%= form.label :name, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+        <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        <% @product_type.errors.full_messages_for(:name).each do |message| %>
+            <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="sm:col-span-2 mt-3">
+        <%= form.label :description, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+        <%= form.text_area :description, class: "h-60 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        <% @product_type.errors.full_messages_for(:description).each do |message| %>
+            <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="flex items-center justify-between sm:col-span-2">
+        <button class="w-full mx-auto inline-block rounded-lg bg-blue-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-900 focus-visible:ring active:bg-blue-700 md:text-base" type="submit">Save</button>
+      </div>
+    </form>
+    <!-- form - end -->

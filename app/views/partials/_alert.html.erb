@@ -1,0 +1,11 @@
+<% if alert.present? %>
+    <div role="alert" class="flex w-full space-x-4 rounded-lg bg-red-50 p-4 text-red-800 ring-1 ring-red-100">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0">
+        <circle cx="12" cy="12.5" r="9">
+        </circle>
+        <path d="M12 8.127v5.5m0 3.246v-.5">
+        </path>
+    </svg>
+    <h3 class="text-sm font-medium"><%= alert.html_safe %></h3>
+    </div>
+<% end %>

@@ -1,4 +1,61 @@
-<div>
-  <h1 class="font-bold text-4xl">ProductTypes#index</h1>
-  <p>Find me in app/views/product_types/index.html.erb</p>
-</div>
+<div class="flex flex-col mx-32">
+  <div class="flex flex-row items-center justify-between pb-4">
+    <h1 class="font-bold text-4xl">Product Type</h1>
+    <%= link_to "Add Product Type", new_product_type_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+  <%= render "partials/notice" %>
+  <%= render "partials/alert" %>
+  <div class="pt-2">
+    <table class="min-w-full divide-y divide-gray-500 items-center">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Name
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Description
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      <% @product_types.each do |pt| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= pt.name %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= pt.description %>
+          </td>
+            <% if pt.active %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xs font-medium px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
+                <span class="whitespace-nowrap">Active</span>
+                </span>
+              </td>
+            <% else %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xs font-medium px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
+                  <span class="whitespace-nowrap">Inactive</span>
+                </span>
+              </td>
+            <%end%>
+          <td class="flex">
+            <a href="<%= edit_product_type_path(pt.id) %>" class="inline-block py-4">
+              <%= render "icons/edit" %>
+            </a>
+            <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4" data-turbo-method="delete"  data-turbo-confirm="Are you sure?"}>
+              <%= render "icons/delete" %>
+            </a>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>  
