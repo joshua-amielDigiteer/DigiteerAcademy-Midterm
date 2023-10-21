@@ -15,11 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
     t.string "name"
     t.text "description"
     t.boolean "active"
-    t.integer "product_types_id", null: false
+    t.integer "product_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_product_categories_on_name", unique: true
-    t.index ["product_types_id"], name: "index_product_categories_on_product_types_id"
+    t.index ["product_type_id"], name: "index_product_categories_on_product_type_id"
   end
 
   create_table "product_types", force: :cascade do |t|
@@ -42,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
     t.index ["product_types_id"], name: "index_products_on_product_types_id"
   end
 
-  add_foreign_key "product_categories", "product_types", column: "product_types_id"
+  add_foreign_key "product_categories", "product_types"
   add_foreign_key "products", "product_categories", column: "product_categories_id"
   add_foreign_key "products", "product_types", column: "product_types_id"
 end

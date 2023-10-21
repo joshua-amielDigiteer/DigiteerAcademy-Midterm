@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">ProductCategories#show</h1>
-  <p>Find me in app/views/product_categories/show.html.erb</p>
-</div>
+<div class="flex flex-col mx-32">
+  <div class="flex flex-row items-center justify-between pb-1">
+    <h1 class="font-bold text-4xl">Product Categories</h1>
+    <%= link_to "Back", product_categories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+  <div class="h-screen mx-auto">
+
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
+      <%= @product_category.name %>
+    </h2>
+    <span>Product Type:</span><%= @product_category.product_type.name %>
+    <% if @product_category.active %>
+      <div class="px-6 py-4 whitespace-nowrap">
+        <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
+        <span class="whitespace-nowrap mx-auto">Active</span>
+        </span>
+      </div>
+    <% else %>
+      <div class="px-6 py-4 whitespace-nowrap">
+        <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
+          <span class="whitespace-nowrap">Inactive</span>
+        </span>
+      </div>
+    <%end%>
+    <%= @product_category.description %>
+  </div>
+</div>  
