@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
     t.string "name"
     t.text "description"
     t.string "price"
+    t.boolean "active"
     t.integer "product_types_id", null: false
     t.integer "product_categories_id", null: false
     t.datetime "created_at", null: false

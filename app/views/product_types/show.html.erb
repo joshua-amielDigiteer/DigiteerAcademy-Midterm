@@ -8,7 +8,7 @@
     <%# card----------- %>
 
   <div class="flex flex-col bg-white border shadow-sm rounded-xl">
-    <div class="p-4 md:p-5">
+    <div class="overflow-auto p-4 md:p-5">
       <h3 class="text-lg font-bold text-gray-800">
         <%= @product_type.name%>
       </h3>
@@ -16,18 +16,14 @@
         <%= @product_type.description%>
       </p>
       
-      <% if @product_type.active %>
-        <td class="px-6 py-4 whitespace-nowrap">
+      <% if @product_type.active %>        
           <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
           <span class="whitespace-nowrap mx-auto">Active</span>
-          </span>
-        </td>
+          </span>       
       <% else %>
-        <td class="px-6 py-4 whitespace-nowrap">
           <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
             <span class="whitespace-nowrap">Inactive</span>
           </span>
-        </td>
       <%end%>
 
     </div>
