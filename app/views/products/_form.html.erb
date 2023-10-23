@@ -11,11 +11,11 @@
         <% if @product.errors.any? %>
             <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
             <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved.</h2>
-            <ul>
-                <% @product.errors.each do |error| %>
-                <li><%= error.inspect %></li>
-                 <% end %>
-            </ul>
+            <%# <ul> %>
+                <%# <% @product.errors.each do |error| %>
+                <%# <li><%= error.inspect %>
+                 <%# <% end %>
+            <%# </ul> %>
             </div>
         <% end %>
         <div class="inline-flex items-center">
@@ -98,6 +98,9 @@
                 class: 'mt-2 inline-block rounded-lg bg-violet-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-violet-300 transition duration-100 hover:bg-violet-800 focus-visible:ring active:bg-violet-700 md:text-base', 
                 data: { action: "click->nested-form#add_association" } %>
             </div>
+            <% @product.errors.full_messages_for(:product_skus).each do |message| %>
+                <div class="text-red-600"><%= message %></div>
+            <%end%>
         </div>
 
         <div class="flex items-center justify-between sm:col-span-2">
