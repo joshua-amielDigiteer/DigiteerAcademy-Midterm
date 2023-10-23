@@ -19,6 +19,9 @@
             Price
           </th>
           <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Product Type
           </th>
           <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -29,7 +32,50 @@
           </th>
         </tr>
       </thead>
-
+          <% @products.each do |p| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.name %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.description.truncate(27) %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= number_to_currency(p.price, unit: "₱") %>
+          </td>
+            <% if p.active %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
+                <span class="whitespace-nowrap mx-auto">Active</span>
+                </span>
+              </td>
+            <% else %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
+                  <span class="whitespace-nowrap mx-auto">Inactive</span>
+                </span>
+              </td>
+            <%end%>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.product_type.name %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.product_category.name %>
+          </td>
+          <td class="flex">
+            <a href="<%= product_path(p.id) %>" class="inline-block py-4 pr-3 pl-5 text-sky-800">
+              <%= render "icons/show" %>
+            </a>
+            <a href="<%= edit_product_path(p.id) %>" class="inline-block py-4 px-3 text-green-800">
+              <%= render "icons/edit" %>
+            </a>
+            <a href="<%= product_path(p.id) %>" class="inline-block py-4 text-red-800" data-turbo-method="delete"  data-turbo-confirm="Are you sure?"}>
+              <%= render "icons/delete" %>
+            </a>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
 
 
 

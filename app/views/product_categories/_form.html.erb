@@ -31,15 +31,17 @@
             </label>
             <%= form.label :active, class: "mt-px font-light text-gray-700 cursor-pointer select-none" %>
         </div>
-        
+
+      <%# =================PRODUCT TYPES SELECTOR =====================  %> 
       <div>
-        <label for="first-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Type</label>
-        <select name="product_category[product_type_id]" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
-            <% ProductType.where(active: true).each do |pt| %>
-                <option value="<%= pt.id %>"><%= pt.name %></option>
-            <% end %>
-        </select>
-    
+          <label for="product[product_type_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Type</label>
+          <%= form.collection_select :product_type_id, ProductType.where(active: true), :id, :name, 
+          {prompt: "Select a product type..."},
+          {class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"}
+          %>
+          <% @product_category.errors.full_messages_for(:product_type_id).each do |message| %>
+            <div class="text-red-600"><%= message %></div>
+          <% end %>
       </div>
 
       <div>

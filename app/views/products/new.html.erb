@@ -4,9 +4,9 @@
     <%= link_to "Back", products_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
   </div>
   <div class="h-screen mx-auto">
-    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-4 lg:text-3xl">Add New Product Category</h2>
-    <%= form_for @product do |form| %>
-        <%= render "form", form: form %>
-    <% end %>
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-4 lg:text-3xl">Add New Product</h2>
+    
+        <%= render "form" %>
+    
   </div>
 </div>  

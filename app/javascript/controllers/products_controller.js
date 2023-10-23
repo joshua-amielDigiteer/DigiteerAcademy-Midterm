@@ -6,7 +6,7 @@ export default class extends Controller {
   change(event){
     let product_type_id = event.target.selectedOptions[0].value;
     let target = this.categorySelectTarget.id
-    console.log(product_type_id, target)
+    // console.log(product_type_id, target)
     get(`/products/categories?target=${target}&product_type_id=${product_type_id}`, {
       responseKind: "turbo-stream"
     })

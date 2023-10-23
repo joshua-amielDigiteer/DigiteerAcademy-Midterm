@@ -7,15 +7,15 @@
     <!-- text - end -->
 
     <!-- form - start -->
-    <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+    <%= form_for @product, {class: "mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2"} do |form| %>
         <% if @product.errors.any? %>
             <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product category from being saved.</h2>
-            <%# <ul> %>
-                <%# <% @product.errors.each do |error| %>
-                <%# <li><%= error.inspect </li> %>
-                <%# <% end %>
-            <%# </ul> %>
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved.</h2>
+            <ul>
+                <% @product.errors.each do |error| %>
+                <li><%= error.inspect %></li>
+                 <% end %>
+            </ul>
             </div>
         <% end %>
         <div class="inline-flex items-center">
@@ -34,46 +34,77 @@
             <%# =================PRODUCT TYPES SELECTOR =====================  %> 
             <div>
                 <label for="product[product_types_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Type</label>
-                <%= form.collection_select :product_types_id, ProductType.where(active: true), :id, :name, 
+                <%= form.collection_select :product_type_id, ProductType.where(active: true), :id, :name, 
                 {prompt: "Select a product type..."},
                 {class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring",
                 data: {action: "change->products#change"}}
                 %>
+                <% @product.errors.full_messages_for(:product_type_id).each do |message| %>
+                    <div class="text-red-600"><%= message %></div>
+                <% end %>
             </div>
 
             <%# =================PRODUCT CATEGORIES SELECTOR =====================  %> 
             <div>
-                <label for="product[product_categories_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Category</label>
-                <%= form.collection_select :product_categories_id, ProductCategory.none, :id, :name,
-                {prompt: "Select a product type..."},
+                <label for="product[product_category_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Category</label>
+                <%= form.collection_select :product_category_id, ProductCategory.none, :id, :name,
+                {prompt: "Select a category..."},
                 {class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring",
                 data: {products_target: "categorySelect"}} %>
+                <% @product.errors.full_messages_for(:product_category_id).each do |message| %>
+                    <div class="text-red-600"><%= message %></div>
+                <% end %>
             </div>
         </div>
 
-        <div>
+        <div class="inline-block">
             <label for="name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Name</label>
-            <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", placeholder:"Type new product" %>
+            <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
+            placeholder:"Product name..." %>
             <% @product.errors.full_messages_for(:name).each do |message| %>
                 <div class="text-red-600"><%= message %></div>
             <% end %>
         </div>
 
-
+        <div class="inline-block">
+            <label for="price" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Price</label>
+            <%= form.text_field :price, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
+            placeholder:"Price..." %>
+            <% @product.errors.full_messages_for(:price).each do |message| %>
+                <div class="text-red-600"><%= message %></div>
+            <% end %>
+        </div>
 
         <div class="sm:col-span-2">
             <label for="message" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Description</label>
-            <%= form.text_area :description, class: "h-60 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", placeholder:"Describe product here..." %>
+            <%= form.text_area :description, class: "h-20 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", placeholder:"Describe product here..." %>
             <% @product.errors.full_messages_for(:description).each do |message| %>
                 <div class="text-red-600"><%= message %></div>
             <%end%>
+        </div>
+        <hr/>
+        <h3>PRODUCT SKUs</h3>
+        <div data-controller="nested-form" class="mb-4">
+            <template data-nested-form-target='template'>
+                <%= form.fields_for :product_skus, ProductSku.new, child_index: 'TEMPLATE_RECORD' do |ff| %>
+                <%= render "product_sku", g: ff %>
+                <%end%>
+            </template>
+            <%= form.fields_for :product_skus do |ff| %>
+                <%= render "product_sku", g: ff %>
+            <%end%>
+            <div data-nested-form-target="add_item">
+                <%= link_to "Add Subcategory", "#", 
+                class: 'mt-2 inline-block rounded-lg bg-violet-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-violet-300 transition duration-100 hover:bg-violet-800 focus-visible:ring active:bg-violet-700 md:text-base', 
+                data: { action: "click->nested-form#add_association" } %>
+            </div>
         </div>
 
         <div class="flex items-center justify-between sm:col-span-2">
             <button class="inline-block rounded-lg bg-green-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-green-300 transition duration-100 hover:bg-green-800 focus-visible:ring active:bg-green-700 md:text-base" type="submit">Save</button>
         </div>
 
-    </form>
+    <% end %>
     <!-- form - end -->
   </div>
 </div>

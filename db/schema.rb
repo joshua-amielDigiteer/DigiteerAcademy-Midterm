@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_130545) do
   create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_type_id"], name: "index_product_categories_on_product_type_id"
+  end
+
+  create_table "product_skus", force: :cascade do |t|
+    t.string "code"
+    t.string "color"
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_skus_on_product_id"
   end
 
   create_table "product_types", force: :cascade do |t|
@@ -32,17 +41,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_094727) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "price"
+    t.decimal "price"
     t.boolean "active"
-    t.integer "product_types_id", null: false
-    t.integer "product_categories_id", null: false
+    t.integer "product_type_id", null: false
+    t.integer "product_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_categories_id"], name: "index_products_on_product_categories_id"
-    t.index ["product_types_id"], name: "index_products_on_product_types_id"
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["product_type_id"], name: "index_products_on_product_type_id"
   end
 
   add_foreign_key "product_categories", "product_types"
-  add_foreign_key "products", "product_categories", column: "product_categories_id"
-  add_foreign_key "products", "product_types", column: "product_types_id"
+  add_foreign_key "product_skus", "products"
+  add_foreign_key "products", "product_categories"
+  add_foreign_key "products", "product_types"
 end

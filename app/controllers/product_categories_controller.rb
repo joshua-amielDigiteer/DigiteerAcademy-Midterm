@@ -1,6 +1,6 @@
 class ProductCategoriesController < ApplicationController
   def index
-    @product_categories = ProductCategory.all
+    @product_categories = ProductCategory.all.order(created_at: :desc)
   end
 
   def new
