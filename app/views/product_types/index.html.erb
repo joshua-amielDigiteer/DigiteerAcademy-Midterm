@@ -1,4 +1,4 @@
-<div class="flex flex-col mx-32">
+<div class="flex flex-col mx-10">
   <div class="flex flex-row items-center justify-between pb-4">
     <h1 class="font-bold text-4xl">Product Type</h1>
     <%= link_to "Add Product Type", new_product_type_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
@@ -49,12 +49,21 @@
             <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4 pr-3 pl-5 text-sky-800">
               <%= render "icons/show" %>
             </a>
-            <a href="<%= edit_product_type_path(pt.id) %>" class="inline-block py-4 px-3 text-green-800">
-              <%= render "icons/edit" %>
-            </a>
-            <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4 text-red-800" data-turbo-method="delete"  data-turbo-confirm="Are you sure?"}>
-              <%= render "icons/delete" %>
-            </a>
+            <% if current_user.role_id == 1 || current_user.role_id == 2 %>
+              <a href="<%= edit_product_type_path(pt.id) %>" class="inline-block py-4 px-3 text-green-800">
+                <%= render "icons/edit" %>
+              </a>
+              <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4 text-red-800" data-turbo-method="delete"  data-turbo-confirm="Are you sure?"}>
+                <%= render "icons/delete" %>
+              </a>
+            <% elsif current_user.role_id == 3 %>
+              <a href="#" class="inline-block py-4 px-3 text-gray-300">
+                <%= render "icons/edit" %>
+              </a>
+              <a href="#" class="inline-block py-4 text-gray-300">
+                <%= render "icons/delete" %>
+              </a>  
+            <%end%>
           </td>
         </tr>
         <%end%>

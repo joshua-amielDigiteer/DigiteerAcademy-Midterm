@@ -1,5 +1,5 @@
-<div class="items-center nested-fields">    
-    <div class="inline-block">
+<div class="items-end nested-fields mb-1 flex">    
+    <div class="inline-block flex-auto mr-2">
         <label for="code" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Code</label>
         <%= g.text_field :code, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
         placeholder:"Product code..." %>
@@ -7,7 +7,7 @@
             <div class="text-red-600"><%= message %></div>
         <%end%>
     </div>
-    <div class="inline-block">
+    <div class="inline-block flex-auto">
         <label for="color" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Color</label>
         <%= g.text_field :color, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
         placeholder:"Product color..." %>
@@ -15,8 +15,9 @@
             <div class="text-red-600"><%= message %></div>
         <%end%>
     </div>
-    <div class='inline-block text-red-700 ml-2 scale-150'>
+    <div class='inline-block text-red-700 ml-4 justify-center w-2/10 scale-150 mb-2'>
         <%= g.hidden_field :_destroy %>
         <%= link_to render('icons/delete').html_safe, "#", data: { action: "click->nested-form#remove_association" } %>
     </div>
 </div>
+<hr/>

@@ -57,22 +57,24 @@
             </div>
         </div>
 
-        <div class="inline-block">
-            <label for="name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Name</label>
-            <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
-            placeholder:"Product name..." %>
-            <% @product.errors.full_messages_for(:name).each do |message| %>
-                <div class="text-red-600"><%= message %></div>
-            <% end %>
-        </div>
+        <div class="flex items-start">
+            <div class="w-2/3 inline-block">
+                <label for="name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Name</label>
+                <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
+                placeholder:"Product name..." %>
+                <% @product.errors.full_messages_for(:name).each do |message| %>
+                    <div class="text-red-600"><%= message %></div>
+                <% end %>
+            </div>
 
-        <div class="inline-block">
-            <label for="price" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Price</label>
-            <%= form.text_field :price, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
-            placeholder:"Price..." %>
-            <% @product.errors.full_messages_for(:price).each do |message| %>
-                <div class="text-red-600"><%= message %></div>
-            <% end %>
+            <div class="w-1/3 inline-block ml-2">
+                <label for="price" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Price</label>
+                <%= form.text_field :price, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", 
+                placeholder:"Price..." %>
+                <% @product.errors.full_messages_for(:price).each do |message| %>
+                    <div class="text-red-600"><%= message %></div>
+                <% end %>
+            </div>
         </div>
 
         <div class="sm:col-span-2">

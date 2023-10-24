@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users,
+    controllers: {
+      sessions: 'sessions',
+      registrations: 'registrations'
+    }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "products#index"
+  devise_scope :user do
+    root 'sessions#new'
+  end
   resources :products do
       collection do
         get :categories
@@ -10,4 +17,5 @@ Rails.application.routes.draw do
   end
   resources :product_categories
   resources :product_types
+  resources :users
 end

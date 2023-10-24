@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authorize_user!
   def index
     @products = Product.all
   end
@@ -55,5 +56,11 @@ class ProductsController < ApplicationController
   private
     def product_params
       params.require(:product).permit(:name, :description, :price, :active, :product_type_id, :product_category_id, product_skus_attributes: [:id, :product_id, :code, :color, :_destroy])
+    end
+
+    def authorize_user!
+      unless current_user.role_id == 1 || current_user.role_id == 2 || current_user.role_id == 3
+        render :file => "public/404.html", alert: "You are not authorized to access this page."
+      end
     end
 end

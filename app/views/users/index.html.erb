@@ -1,0 +1,59 @@
+<div class="flex flex-col mx-10">
+  <div class="flex flex-row items-center justify-between pb-4">
+    <h1 class="font-bold text-4xl">Users</h1>
+  </div>
+  <%= render "partials/notice" %>
+  <%= render "partials/alert" %>
+  <div class="pt-2">
+    <table class="min-w-full divide-y divide-gray-500 items-center">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Name
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Email
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Role
+          </th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Contact Number
+          </th>
+          
+        </tr>
+      </thead>
+          <% @users.each do |p| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.first_name + " " + p.last_name%>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.email %>
+          </td>
+            <% if p.role_id == 1 %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
+                <span class="whitespace-nowrap mx-auto">Super Admin</span>
+                </span>
+              </td>
+            <% else %>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
+                  <span class="whitespace-nowrap mx-auto">Admin</span>
+                </span>
+              </td>
+            <%end%>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <%= p.contact_number %>
+          </td>        
+        </tr>
+        <%end%>
+      </tbody>
+
+
+
+
+    </table>
+  </div>
+</div>

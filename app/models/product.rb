@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
     belongs_to :product_type
     belongs_to :product_category
-    has_many :product_skus
+    has_many :product_skus, dependent: :destroy
 
     validates :name, presence: true
     validates :description, presence: true
