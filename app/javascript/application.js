@@ -2,8 +2,10 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@checkbox"
-import "flowbite"
-
+import "@flowbite"
+import LocalTime from "local-time"
+LocalTime.start()
+ 
 Turbo.setConfirmMethod(() =>{
     let dialog = document.getElementById("turbo-confirm")
     dialog.showModal()

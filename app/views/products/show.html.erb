@@ -36,7 +36,7 @@
       </div>
       <div class="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 ">
         <p class="mt-1 text-sm text-gray-500 ">
-          Last updated 5 mins ago
+          Created <%= time_tag @product.created_at, "data-local": "time-ago" %>
         </p>
       </div>
     </div>

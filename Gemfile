@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 
 gem 'devise'
 gem 'pagy'
+gem 'local_time'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
