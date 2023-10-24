@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path,
         notice: "<strong>#{@product.name}</strong> was successfully created."
+        AuditTrail.save_audit(current_user.id, "Create", "Products", @product.inspect)
     else
       # render :new, status: :unprocessable_entity
       render :new, status: :unprocessable_entity, locals: { errors: @product.errors }
@@ -32,6 +33,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to products_path,
         notice: "<strong>#{@product.name}</strong> was successfully updated."
+        AuditTrail.save_audit(current_user.id, "Edit", "Products", @product.inspect)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,6 +44,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to products_path,
         notice: "<strong>#{@product.name}</strong> was successfully deleted."
+        AuditTrail.save_audit(current_user.id, "Delete", "Products", @product.inspect)
     end
   end
 

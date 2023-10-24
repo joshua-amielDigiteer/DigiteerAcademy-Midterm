@@ -17,6 +17,7 @@ class ProductTypesController < ApplicationController
     if @product_type.save
       redirect_to product_types_path,
         notice: "<strong>#{@product_type.name}</strong> was successfully created."
+        AuditTrail.save_audit(current_user.id, "Create", "Product Type", @product_type.inspect)
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,6 +32,7 @@ class ProductTypesController < ApplicationController
     if @product_type.update(product_type_params)
       redirect_to product_types_path,
         notice: "<strong>#{@product_type.name}</strong> was successfully updated."
+        AuditTrail.save_audit(current_user.id, "Edit", "Product Type", @product_type.inspect)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,6 +43,7 @@ class ProductTypesController < ApplicationController
     if @product_type.destroy
       redirect_to product_types_path,
         notice: "<strong>#{@product_type.name}</strong> was successfully deleted."
+        AuditTrail.save_audit(current_user.id, "Delete", "Product Type", @product_type.inspect)
     end
   end
 
@@ -51,7 +54,7 @@ class ProductTypesController < ApplicationController
 
     def authorize_user!
       unless current_user.role_id == 1 || current_user.role_id == 2
-        render :file => "public/404.html", alert: "You are not authorized to access this page."
+        render "partials/404.html"
       end
     end
 end

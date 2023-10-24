@@ -78,8 +78,10 @@
                <span class="flex-1 ml-3 whitespace-nowrap">Products</span>
             </a>
          </li>
+        </ul>
          <%# ==============================Users=================================== %>
          <% if current_user.role_id == 1 %>
+         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <li>
                <a href="<%= users_path %>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -98,10 +100,16 @@
                   <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                </a>
             </li>
+            <li>
+               <a href="<%= audit_trails_path %>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <%= render "icons/logs" %>
+                  <span class="flex-1 ml-3 whitespace-nowrap">Audit Trails</span>
+               </a>
+            </li>
          <%end%>
       </ul>
    </div>
-   <div class="text-gray-300 px-3 py-3 bg-gray-700">
+   <div class="text-gray-300 px-3 py-6 bg-gray-700 items-center">
          <span>Role: </span>
          <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full ">
             <% if current_user.role_id == 1 %>
@@ -114,4 +122,3 @@
          </span>
    </div>
 </aside>
- <%# <%= Role.where(id: current_user.role_id).pluck(:name) %>

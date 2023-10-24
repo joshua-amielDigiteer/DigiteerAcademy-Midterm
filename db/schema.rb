@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_23_055920) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_075812) do
+  create_table "audit_trails", force: :cascade do |t|
+    t.string "module_action"
+    t.string "module_name"
+    t.text "module_data"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_audit_trails_on_user_id"
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -89,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_055920) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "audit_trails", "users"
   add_foreign_key "product_categories", "product_types"
   add_foreign_key "product_skus", "products"
   add_foreign_key "products", "product_categories"

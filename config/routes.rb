@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :product_categories
   resources :product_types
   resources :users
+  get "audit_trails", to: "audit_trails#index"
 end

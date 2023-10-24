@@ -18,6 +18,7 @@ class ProductCategoriesController < ApplicationController
     if @product_category.save
       redirect_to product_categories_path,
         notice: "<strong>#{@product_category.name}</strong> was successfully created."
+        AuditTrail.save_audit(current_user.id, "Create", "Product Category", @product_category.inspect)
     else
       # render :new, status: :unprocessable_entity
       render :new, status: :unprocessable_entity, locals: { errors: @product_category.errors }
@@ -33,6 +34,7 @@ class ProductCategoriesController < ApplicationController
     if @product_category.update(product_category_params)
       redirect_to product_categories_path,
         notice: "<strong>#{@product_category.name}</strong> was successfully updated."
+        AuditTrail.save_audit(current_user.id, "Edit", "Product Category", @product_category.inspect)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,6 +45,7 @@ class ProductCategoriesController < ApplicationController
     if @product_category.destroy
       redirect_to product_categories_path,
         notice: "<strong>#{@product_category.name}</strong> was successfully deleted."
+        AuditTrail.save_audit(current_user.id, "Delete", "Product Category", @product_category.inspect)
     end
   end
 

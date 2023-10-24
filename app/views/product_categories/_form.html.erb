@@ -7,7 +7,7 @@
     <!-- text - end -->
 
     <!-- form - start -->
-    <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+    
         <% if @product_category.errors.any? %>
             <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
             <h2><%= pluralize(@product_category.errors.count, "error") %> prohibited this product category from being saved.</h2>
