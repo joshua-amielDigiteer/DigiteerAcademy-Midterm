@@ -17,7 +17,7 @@
     </div>
 
       <div class="sm:col-span-2">
-        <%= form.label :name, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+        <%= form.label :name, class: "mb-0 inline-block text-sm text-gray-800 sm:text-base" %>
         <%= form.text_field :name, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", placeholder:"Type product name" %>
         <% @product_type.errors.full_messages_for(:name).each do |message| %>
             <div class="text-red-600"><%= message %></div>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="sm:col-span-2 mt-3">
-        <%= form.label :description, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+        <%= form.label :description, class: "mb-0 inline-block text-sm text-gray-800 sm:text-base" %>
         <%= form.text_area :description, class: "h-60 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", placeholder:"Describe your product here..." %>
         <% @product_type.errors.full_messages_for(:description).each do |message| %>
             <div class="text-red-600"><%= message %></div>
@@ -33,6 +33,6 @@
       </div>
 
       <div class="flex items-center justify-between sm:col-span-2">
-        <button class="w-full mx-auto inline-block rounded-lg bg-blue-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-900 focus-visible:ring active:bg-blue-700 md:text-base" type="submit">Save</button>
+        <button class="w-full mx-auto inline-block rounded-lg bg-green-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-green-300 transition duration-100 hover:bg-green-900 focus-visible:ring active:bg-green-700 md:text-base" type="submit">Save</button>
       </div>
     </form>

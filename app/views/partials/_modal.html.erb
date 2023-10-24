@@ -1,0 +1,14 @@
+<dialog id="turbo-confirm" class="px-10 py-10 border shadow-sm rounded-xl border-gray-600">
+    <form method="dialog">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="text-red-700 flex justify-center"><%= render "icons/danger" %></div>   
+            <h3 class="mb-5">Are you sure you want to delete this item?</h3>
+            <div class="flex justify-center">
+                <button value="confirm" class="mr-2 disabled:opacity-50 transition inline-flex items-center justify-center space-x-1.5 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:z-10 shrink-0 border-red-700/75 focus:ring-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-700 px-3 py-1.5 text-sm font-medium rounded-md">
+                    Yes, I'm sure
+                </button>
+                <button value="cancel" class="ml-2 disabled:opacity-50 transition inline-flex items-center justify-center space-x-1.5 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:z-10 shrink-0 border-gray-700/75 focus:ring-gray-600 bg-gray-600 text-white hover:bg-gray-700 hover:border-gray-700 px-3 py-1.5 text-sm font-medium rounded-md">No, cancel</button>
+            </div>
+        </div>
+    </form>
+</dialog>

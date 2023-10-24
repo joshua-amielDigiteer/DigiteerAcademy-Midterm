@@ -49,6 +49,7 @@
             <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4 pr-3 pl-5 text-sky-800">
               <%= render "icons/show" %>
             </a>
+            <%# ===============RESTRICT MANAGER ROLE ACCESS TO EDIT/DELETE BUTTONS=========== %>
             <% if current_user.role_id == 1 || current_user.role_id == 2 %>
               <a href="<%= edit_product_type_path(pt.id) %>" class="inline-block py-4 px-3 text-green-800">
                 <%= render "icons/edit" %>
@@ -56,6 +57,7 @@
               <a href="<%= product_type_path(pt.id) %>" class="inline-block py-4 text-red-800" data-turbo-method="delete"  data-turbo-confirm="Are you sure?"}>
                 <%= render "icons/delete" %>
               </a>
+            <%# ====================================================================== %>
             <% elsif current_user.role_id == 3 %>
               <a href="#" class="inline-block py-4 px-3 text-gray-300">
                 <%= render "icons/edit" %>

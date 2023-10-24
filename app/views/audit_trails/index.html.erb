@@ -33,7 +33,19 @@
           </td>
 
           <td class="px-6 py-4 whitespace-nowrap">
-            <%= at.module_action %>
+            <% if at.module_action == "Create" %>
+                <span class="flex shrink-0 items-center space-x-1.5 text-xs font-medium px-3 py-1 rounded-full text-lime-800 bg-lime-100 false">
+                    <span class="whitespace-nowrap mx-auto">Create</span>
+                </span>
+            <% elsif at.module_action == "Edit" %>
+                <span class="flex shrink-0 items-center space-x-1.5 text-xs font-medium px-3 py-1 rounded-full text-purple-800 bg-purple-100 false">
+                    <span class="whitespace-nowrap mx-auto">Edit</span>
+                </span>
+            <% else %>
+                <span class="flex shrink-0 items-center space-x-1.5 text-xs font-medium px-3 py-1 rounded-full text-red-800 bg-red-100 false">
+                    <span class="whitespace-nowrap mx-auto">Delete</span>
+                </span>
+            <%end%>
           </td>
 
           <td class="px-6 py-4 whitespace-nowrap">

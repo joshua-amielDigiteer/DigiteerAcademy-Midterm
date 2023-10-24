@@ -3,10 +3,12 @@
     <h1 class="font-bold text-4xl">Product Categories</h1>
     <%= link_to "Back", product_categories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
   </div>
-  <div class="h-screen mx-auto">
-    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Edit Product Category</h2>
-    <%= form_for @product_category do |form| %>
-        <%= render "form", form: form %>
-    <% end %>
+  <div class="h-screen mx-20">
+    <h2 class="mb-0 text-center pt-5 text-2xl font-bold text-gray-800 md:mb-4 lg:text-3xl">Edit Product Category</h2>
+    <div class="bg-white py-6 sm:py-8 lg:py-5">
+        <div class="mx-10 max-w-screen-2xl px-2 md:px-8">
+        <%= render "form"%>
+        </div>
+    </div>
   </div>
 </div>  
