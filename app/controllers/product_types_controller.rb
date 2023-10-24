@@ -1,7 +1,7 @@
 class ProductTypesController < ApplicationController
   before_action :authorize_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
-    @product_types = ProductType.all.order(created_at: :desc)
+    @pagy, @product_types = pagy(ProductType.all.order(updated_at: :desc), items:7)
   end
 
   def new

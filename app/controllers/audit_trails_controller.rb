@@ -1,7 +1,7 @@
 class AuditTrailsController < ApplicationController
     before_action :authorize_user!
     def index
-        @audit_trails = AuditTrail.all
+        @pagy, @audit_trails = pagy(AuditTrail.all.order(updated_at: :desc), items:7)
     end
 
     private

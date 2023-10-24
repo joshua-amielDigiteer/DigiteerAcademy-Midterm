@@ -1,7 +1,7 @@
 class UsersController<ApplicationController
     before_action :authorize_user!
    def index
-     @users = User.all
+     @pagy, @users = pagy(User.all.order(updated_at: :desc), items:7)
    end
 
    def authorize_user!
