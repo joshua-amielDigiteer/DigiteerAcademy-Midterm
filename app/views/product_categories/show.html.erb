@@ -3,25 +3,37 @@
     <h1 class="font-bold text-4xl">Product Categories</h1>
     <%= link_to "Back", product_categories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
   </div>
-  <div class="h-screen mx-auto">
+  <div class="mx-auto pt-5">
 
-    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
-      <%= @product_category.name %>
-    </h2>
-    <span>Product Type:</span><%= @product_category.product_type.name %>
-    <% if @product_category.active %>
-      <div class="px-6 py-4 whitespace-nowrap">
-        <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
-        <span class="whitespace-nowrap mx-auto">Active</span>
-        </span>
+    <div class="flex flex-col bg-white border shadow-sm rounded-xl mx-32">
+      <div class="overflow-auto p-4 md:p-5">
+        <h3 class="text-lg font-bold text-gray-800">
+          <%= @product_category.name.upcase %>
+        </h3>
+        <p class="mt-2 text-gray-800 mb-3">
+          <span><strong>Product Type:</strong> <%= @product_category.product_type.name %></span> 
+        </p>
+        <p class="mt-2 text-gray-800 mb-3">
+          <%= @product_category.description%>
+        </p>
+      
+      <% if @product_category.active %>        
+          <span class="shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
+          <span class="whitespace-nowrap mx-auto">Active</span>
+          </span>       
+      <% else %>
+          <span class="shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
+            <span class="whitespace-nowrap">Inactive</span>
+          </span>
+      <%end%>
+
       </div>
-    <% else %>
-      <div class="px-6 py-4 whitespace-nowrap">
-        <span class="flex shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-slate-800 bg-slate-100 false">
-          <span class="whitespace-nowrap">Inactive</span>
-        </span>
+      <div class="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 ">
+        <p class="mt-1 text-sm text-gray-500 ">
+          Last updated 5 mins ago
+        </p>
       </div>
-    <%end%>
-    <%= @product_category.description %>
+    </div>
+
   </div>
 </div>  
