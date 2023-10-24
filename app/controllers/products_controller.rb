@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
 
   def categories
     @target = params[:target]
-    @categories = ProductCategory.where(product_type_id: params[:product_type_id])
+    @categories = ProductCategory.where(product_type_id: params[:product_type_id], active: true)
     respond_to do |format|
       format.turbo_stream
     end

@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :contact_number, presence: true
   validates :role_id, presence: true
+  belongs_to :role
 end

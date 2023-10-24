@@ -30,9 +30,9 @@
             </label>
             <%= form.label :active, class: "mt-px font-light text-gray-700 cursor-pointer select-none" %>
         </div>
-        <div data-controller="products">
+        <div data-controller="products" class="flex items-start">
             <%# =================PRODUCT TYPES SELECTOR =====================  %> 
-            <div>
+            <div class="w-1/2 inline-block mr-1">
                 <label for="product[product_types_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Type</label>
                 <%= form.collection_select :product_type_id, ProductType.where(active: true), :id, :name, 
                 {prompt: "Select a product type..."},
@@ -45,7 +45,7 @@
             </div>
 
             <%# =================PRODUCT CATEGORIES SELECTOR =====================  %> 
-            <div>
+            <div class="w-1/2 inline-block ml-1">
                 <label for="product[product_category_id]" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Product Category</label>
                 <%= form.collection_select :product_category_id, ProductCategory.none, :id, :name,
                 {prompt: "Select a category..."},

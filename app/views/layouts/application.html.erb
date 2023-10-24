@@ -16,14 +16,10 @@
     <div class="p-4 sm:ml-64 flex flex-col h-screen justify-between">
       <div class="p-4 mt-14">
         <main class="container mx-auto mt-5 px-5 relative">
-        <p class="alert"><%= alert %></p>
         <%= yield %>
         </main>
       </div>
-      <div>
-        <div class="pt-3 flex justify-center"><%== pagy_nav(@pagy) %></div>
-        <%= render "partials/footer"%>
-      </div>
+      <%= render "partials/footer"%>
     </div> 
   </body>
 </html>
