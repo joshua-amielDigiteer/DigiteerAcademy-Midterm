@@ -47,6 +47,9 @@ class ProductCategoriesController < ApplicationController
         notice: "<strong>#{@product_category.name}</strong> was successfully deleted."
         AuditTrail.save_audit(current_user.id, "Delete", "Product Category", @product_category.inspect)
     end
+  rescue ActiveRecord::InvalidForeignKey, ActiveRecord::DeleteRestrictionError => _e
+    redirect_to product_categories_path,
+        alert: "Warning: <strong>#{@product_category.name}</strong> is still being referenced in other tables!"
   end
 
   private

@@ -45,6 +45,9 @@ class ProductTypesController < ApplicationController
         notice: "<strong>#{@product_type.name}</strong> was successfully deleted."
         AuditTrail.save_audit(current_user.id, "Delete", "Product Type", @product_type.inspect)
     end
+    rescue ActiveRecord::InvalidForeignKey, ActiveRecord::DeleteRestrictionError => _e
+      redirect_to product_types_path,
+          alert: "Warning: <strong>#{@product_type.name}</strong> is still being referenced in other tables!"
   end
 
   private
