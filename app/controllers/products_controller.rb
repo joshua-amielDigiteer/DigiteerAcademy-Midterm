@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @sku = ProductSku.where(product_id: @product.id).pluck(:code, :color)
   end
 
   def create

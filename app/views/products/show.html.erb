@@ -22,7 +22,16 @@
         <p class="mt-2 text-gray-800 mb-3">
           <%= number_to_currency(@product.price, unit: "₱") %>
         </p>
+        <p class="mt-2 text-gray-800 mb-3">
+          <span><strong>Product SKU:</strong></span>
+        </p>
         
+        <% @sku.each do |sku| %>  
+          <p class="mt-2 text-gray-800 mb-3">
+            <span>Code => <%= sku[0] %> </span> <span>, Color => <%= sku[1] %> </span>
+          </p>
+        <%end%>
+
       <% if @product.active %>        
           <span class="shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
           <span class="whitespace-nowrap mx-auto">Active</span>
