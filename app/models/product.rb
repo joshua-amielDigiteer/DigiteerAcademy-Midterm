@@ -2,7 +2,7 @@ class Product < ApplicationRecord
     belongs_to :product_type
     belongs_to :product_category
     has_many :product_skus, dependent: :destroy
-
+    has_many_attached :images
     validates :name, presence: true
     validates :description, presence: true
     validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}

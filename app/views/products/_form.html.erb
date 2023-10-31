@@ -30,6 +30,12 @@
             </label>
             <%= form.label :active, class: "mt-px font-light text-gray-700 cursor-pointer select-none" %>
         </div>
+
+        <div class="sm:col-span-2">
+            <label for="images" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Images</label>
+            <%= form.file_field :images, multiple: true, class:"w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none" %>
+        </div>
+
         <div data-controller="products" class="flex items-start">
             <%# =================PRODUCT TYPES SELECTOR =====================  %> 
             <div class="w-1/2 inline-block mr-1">
