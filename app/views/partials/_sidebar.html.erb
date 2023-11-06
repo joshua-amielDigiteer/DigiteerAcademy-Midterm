@@ -20,8 +20,12 @@
               <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                 <span class="sr-only">Open user menu</span>
                 
-                  <%= render "icons/user"%>
-               
+                  <%# render "icons/user" %>
+                  <% if current_user.image %>
+                     <%= image_tag(current_user.image_url, class:"w-6 h-6 rounded-full") %>
+                  <%else%>
+                     <%= render "icons/user" %>
+                  <%end%>   
               </button>
             </div>
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">

@@ -31,7 +31,9 @@
             <span>Code => <%= sku[0] %> </span> <span>, Color => <%= sku[1] %> </span>
           </p>
         <%end%>
-
+        <div class="mb-3">
+          <%= image_tag @product.image_url if @product.image %>
+        </div>
       <% if @product.active %>        
           <span class="shrink-0 items-center space-x-1.5 text-xm font-semibold px-3 py-1 rounded-full text-emerald-800 bg-emerald-100 false">
           <span class="whitespace-nowrap mx-auto">Active</span>

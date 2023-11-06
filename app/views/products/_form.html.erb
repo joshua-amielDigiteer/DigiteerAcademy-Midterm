@@ -7,7 +7,7 @@
     <!-- text - end -->
 
     <!-- form - start -->
-    <%= form_for @product, {class: "mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2"} do |form| %>
+    <%= form_for @product, class: "mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2" do |form| %>
         <% if @product.errors.any? %>
             <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
             <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved.</h2>
@@ -30,6 +30,15 @@
             </label>
             <%= form.label :active, class: "mt-px font-light text-gray-700 cursor-pointer select-none" %>
         </div>
+        <%# =================ADD PHOTOS======================= %>
+        <div class="sm:col-span-2">
+            <label for="image" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Image/s</label>
+            <%= image_tag(form.object.image_url, class:"w-32 h-32") if form.object.cached_image_data %>
+            <%= form.hidden_field :image, value: form.object.cached_image_data %>
+            <%= form.file_field :image, class: "h-10 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+        
+       
         <div data-controller="products" class="flex items-start">
             <%# =================PRODUCT TYPES SELECTOR =====================  %> 
             <div class="w-1/2 inline-block mr-1">

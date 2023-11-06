@@ -47,7 +47,7 @@ class UsersController<ApplicationController
    private
 
    def user_params
-     params.require(:user).permit(:first_name,:last_name, :email, :password, :password_confirmation, :role_id, :contact_number)
+     params.require(:user).permit(:first_name,:last_name, :email, :password, :password_confirmation, :role_id, :contact_number, :image)
    end
    def authorize_user!
     unless current_user.role_id == 1
